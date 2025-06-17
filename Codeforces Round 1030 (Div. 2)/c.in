@@ -1,0 +1,18 @@
+if (reachedL[ind][time] == 0) {
+            if (time < delay[ind] || time - delay[ind] > 0) {
+                if (ind + 1 == n) {
+                    return 1;
+                }
+                reachedL[ind][time] = 3;
+                reachedL[ind][time] = rec((time + position[ind + 1] - position[ind]) % k, 1, n, k, ind + 1, position, delay, reachedL, reachedL);  
+            }
+            else {
+                if (ind - 1 == 0) return 1;
+                reachedL[ind][time] = 3;
+                reachedL[ind][time] = rec((time + position[ind] - position[ind - 1]) % k, 0, n, k, ind + 1, position, delay, reachedL, reachedL);
+            }
+        }
+        else if (reachedL[ind][time] == 3) {
+            reachedL[ind][time] = 2;
+        }
+        return reachedL[ind][time];

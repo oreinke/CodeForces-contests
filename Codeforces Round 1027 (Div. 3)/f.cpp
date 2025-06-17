@@ -27,7 +27,6 @@ map<int, int> getFactorization(int x)
     return ret;
 }
 
-
 int main() {
     sieve();
     int t; cin >> t;
