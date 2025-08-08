@@ -1,0 +1,49 @@
+    .file "stdin"
+    .section .note.GNU-stack,"",@progbits
+    .text
+
+    .globl main
+    .type main, @function
+main:
+    pushq	%rbp
+    movq	%rsp, %rbp
+    push	%rbx
+
+    mov $5, %rax
+    mov %rax, -8(%rbp)
+
+    mov $1, %rax
+    mov %rax, -16(%rbp)
+
+    mov $0, %rax
+    mov %rax, -24(%rbp)
+
+head:
+    mov -8(%rbp), %rax
+    mov $0, %rbx
+    cmp	%rbx, %rax  # %rbx is 10, %rax is x
+    jle a1
+
+    mov -24(%rbp), %rbx
+    mov -8(%rbp), %rax
+    add %rax, %rbx
+    mov %rbx, -24(%rbp)
+
+    mov -8(%rbp), %rax
+    sub $1, %rax
+    mov %rax, -8(%rbp)
+
+    jmp head
+        
+a1:
+
+    mov -24(%rbp), %rax
+    mov -16(%rbp), %rbx
+    add %rbx, %rax
+    mov %rax, -24(%rbp)
+
+    mov -24(%rbp), %rax
+
+    pop %rbx
+    popq %rbp
+    ret
